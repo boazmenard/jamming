@@ -22,7 +22,8 @@ export default class Track extends React.Component {
                     <h3>{this.props.track.name}</h3>
                     <p>{this.props.track.artist} | {this.props.track.artist}</p>
                 </div>
-                <button className="Track-action" onClick={this.addTrack}>+</button> or <button onClick={this.removeTrack}>-</button>
+                {this.props.isRemoval ? <button className="Track-action" onClick={this.removeTrack}>-</button> :
+                    <button className="Track-action" onClick={this.addTrack}>+</button>}
             </div>
         )
     }

@@ -10,18 +10,19 @@ export class App extends React.Component {
         super(props);
         this.state  = {
             searchResults: [
-                {name: 'song', artist: 'artist', album: 'album', id: 'id'},
-                {name: 'song', artist: 'artist', album: 'album', id: 'id'}
+                {name: 'song 1', artist: 'artist', album: 'album', id: '1'},
+                {name: 'song 2', artist: 'artist', album: 'album', id: '2'}
                 ],
-            playlistName: 'playlist name',
-            playlistTracks: [{name: 'song', artist: 'artist', album: 'album', id: 'id'}]
+            playlistName: '',
+            playlistTracks: [{name: 'song 1', artist: 'artist', album: 'album', id: '1'}]
         };
         this.addTrack = this.addTrack.bind(this);
         this.removeTrack = this.removeTrack.bind(this);
+        this.updatePlaylistName = this.updatePlaylistName.bind(this);
     }
 
     addTrack(track) {
-        if (this.state.playlistTracks.find(existingTrack => existingTrack.id === track.id)) {
+        if (!this.state.playlistTracks.find(existingTrack => existingTrack.id === track.id)) {
             this.state.playlistTracks.push(track);
         }
         this.setState({playlistTracks: this.state.playlistTracks});
@@ -32,6 +33,10 @@ export class App extends React.Component {
         this.setState({playlistTracks: this.state.playlistTracks});
     }
 
+    updatePlaylistName(name) {
+        this.setState({playlistName: name});
+    }
+
     render() {
         return (
             <div>
@@ -40,7 +45,8 @@ export class App extends React.Component {
                     <SearchBar />
                     <div className="App-playlist">
                         <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
-                        <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} />
+                        <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}
+                                  onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} />
                     </div>
                 </div>
             </div>
