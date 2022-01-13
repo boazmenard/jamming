@@ -1,5 +1,5 @@
 let userAccessToken;
-const clientID = 'eb386b14d4ce42e191c16b85f6809080';
+const clientID = ''; // enter your own client ID
 const redirectURI = 'http://localhost:3000/';
 
 export const Spotify = {
